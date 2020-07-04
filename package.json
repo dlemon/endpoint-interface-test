@@ -1,0 +1,25 @@
+{
+  "name": "endpoint-interface-test",
+  "version": "1.0.0",
+  "description": "Stress testing Endpoint API Server at http://equiptrace.nl:8080/",
+  "main": "test.js",
+  "dependencies": {
+    "axion": "^0.1.0",
+    "axios": "^0.19.2",
+    "querystring": "^0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlemon/endpoint-interface-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlemon/endpoint-interface-test/issues"
+  },
+  "homepage": "https://github.com/dlemon/endpoint-interface-test#readme"
+}
