@@ -17,9 +17,10 @@ const options = {
 
 function run_test() {
     let success = 0;
-    let max = 10000;
+    let max = 1000;
     let count = 0;
-    
+    let errors = {};
+
     console.log('going to post', url, max, 'times....');
     let start = Date.now();
 
@@ -34,7 +35,11 @@ function run_test() {
           })
           .catch(function (error) {
             // handle error: something went wrong, print the error and increase error count
-            console.log(error.code);
+            if (errors[error.code]) {
+                errors[error.code] += 1;
+            } else {
+                errors[error.code] = 1;
+            }
           })
           .finally(function () {
             // always executed: wait until all post requests are executed and then print the test results
@@ -44,6 +49,7 @@ function run_test() {
                 console.log("success: ", (success/max) * 100, "% error: ", 100 - success_rate, "%")
                 console.log("execution count: ", max);
                 console.log("execution time: ", (Date.now() - start)/1000, "seconds.");
+                console.log(errors);
             }
           });
     }
