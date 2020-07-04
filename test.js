@@ -19,8 +19,7 @@ function run_test() {
     let success = 0;
     let max = 10000;
     let count = 0;
-    let success_rate = 0;
-
+    
     console.log('going to post', url, max, 'times....');
     let start = Date.now();
 
@@ -41,8 +40,8 @@ function run_test() {
             // always executed: wait until all post requests are executed and then print the test results
             count = count + 1;
             if (count == max) {
-                success_rate = (success/max) * 100;
-                console.log("success: ", (success/max) * 100, "% error: ", 100 - succes_rate, "%")
+                let success_rate = (success/max) * 100;
+                console.log("success: ", (success/max) * 100, "% error: ", 100 - success_rate, "%")
                 console.log("execution count: ", max);
                 console.log("execution time: ", (Date.now() - start)/1000, "seconds.");
             }
