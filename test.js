@@ -19,6 +19,7 @@ function run_test() {
     let success = 0;
     let max = 10000;
     let count = 0;
+    let success_rate = 0;
 
     console.log('going to post', url, max, 'times....');
     let start = Date.now();
