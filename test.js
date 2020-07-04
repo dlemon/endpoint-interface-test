@@ -1,4 +1,15 @@
 const axios = require('axios');
+const qs = require("querystring");
+
+const url = 'http://equiptrace.nl:8080/test-endpoint';
+
+const data = qs.stringify({
+        versie: "2.17",
+        actie: "add",
+        voertuignr_hexon: 21633902,
+        voertuignr: "08de42f4-04a2-11ea-a7ce-42010aa4004e",
+        voertuignr_klant: 5675
+});
 
 const options = {
     headers: {
@@ -6,31 +17,23 @@ const options = {
         "user-agent": "Doorlinken Voorraad",
         "accept": "*/*",
         "accept-encoding": "deflate, gzip",
-        "content-type": "application/x-www-form-urlencoded",
+        "content-type": "application/X-www-form-urlencoded",
         "expect": "100-continue"
-    },
-    form: {
-        versie: "2.17",
-        actie: "add",
-        voertuignr_hexon: "21633902",
-        voertuignr:"08de42f4-04a2-11ea-a7ce-42010aa4004e",
-        voertuignr_klant:"5675",
-        kenteken:"OL57DH",
-        voertuigsoort: "OPLEGGER",
     }
 };
 
 function run_test() {
     let success = 0;
     let error = 0;
-    let max = 1000;
+    let max = 10000;
     let count = 0;
 
-    console.log('going to post http://equiptrace.nl:8080/test-endpoint',max, 'times....');
+    console.log('going to post', url, max, 'times....');
     let start = Date.now();
 
+    // Send out <max> post requests. These requests are axios promises
     for(i=0;i<max;i++) {
-        axios.post('http://equiptrace.nl:8080/test-endpoint', options)
+        axios.post(url, data, options)
         .then(function (response) {
             // handle success: if the server responded with "1" this is considered a success
             if (response.data == "1") {
