@@ -17,7 +17,6 @@ const options = {
 
 function run_test() {
     let success = 0;
-    let error = 0;
     let max = 10000;
     let count = 0;
 
@@ -36,13 +35,13 @@ function run_test() {
           .catch(function (error) {
             // handle error: something went wrong, print the error and increase error count
             console.log(error.code);
-            error = error + 1
           })
           .finally(function () {
             // always executed: wait until all post requests are executed and then print the test results
             count = count + 1;
             if (count == max) {
-                console.log("success: ", (success/max) * 100, "% error: ", (error/max)*100,"%")
+                success_rate = (success/max) * 100;
+                console.log("success: ", (success/max) * 100, "% error: ", 100 - succes_rate, "%")
                 console.log("execution count: ", max);
                 console.log("execution time: ", (Date.now() - start)/1000, "seconds.");
             }
